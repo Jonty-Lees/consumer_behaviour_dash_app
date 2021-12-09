@@ -1,0 +1,35 @@
+body {
+    margin: 20px 10px 20px 10px;
+    background: linear-gradient(rgba(255,255,255,1) 35%, rgb(7, 191, 163) 100%);
+    ;
+}
+
+.header {
+    text-align: center;
+    
+}
+
+.graph_header {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+#product-data-selector{
+    max-width: 25rem;
+    margin: 0px auto 10px auto;
+}
+
+.region-selector{
+    max-width: 25rem;
+    margin: 0px auto 10px auto;
+}
+
+.county-selector{
+    max-width: 25rem;
+    margin: 0px auto 10px auto;
+}
+
+.dropdown-header{
+    text-align: center;
+}
