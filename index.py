@@ -386,7 +386,6 @@ def product_disable_change(region, county):
     Input(component_id='product-region-selector', component_property='value'),
     Input(component_id='product-county-selector', component_property='value'),
     Input(component_id='top_product_slider', component_property='value')
-
 )
 def top_product_graph(data_select, region_select, county_select, slider_select):
     if data_select and region_select is not None:
