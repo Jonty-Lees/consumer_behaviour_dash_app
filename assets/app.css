@@ -6,7 +6,7 @@ body {
 
 .header {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
     margin-top: 20px;
     
 }
@@ -22,12 +22,15 @@ body {
     margin: 0px auto 10px auto;
 }
 
-.region-selector{
+#product-region-selector,
+#performance-region-selector{
     max-width: 25rem;
     margin: 0px auto 10px auto;
 }
 
-.county-selector{
+
+#product-county-selector,
+#performance-county-selector{
     max-width: 25rem;
     margin: 0px auto 10px auto;
 }
@@ -44,15 +47,15 @@ body {
     text-align: center;
 }
 .line-graph{
-    width: 110em;
+    width: 90%;
     margin: auto;
     height: 25em;
 }
 .per-hour-slider{
-    width: 90em;
+    width: 90%;
     margin: auto;
 }
 .profit-slider{
-    width: 90em;
+    width: 90%;
     margin: auto;
 }
