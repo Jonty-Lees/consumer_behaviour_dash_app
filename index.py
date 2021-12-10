@@ -1,7 +1,7 @@
 #Dependencies
 import dash;
 from dash import dcc, html;
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 import pandas as pd
 import plotly.express as px
@@ -13,6 +13,8 @@ import dash_bootstrap_components as dbc
 app = dash.Dash('', external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 product_df = pd.read_csv('data/product_df.csv')
+performance_df = pd.read_csv('data/performance_df.csv')
+per_hour_df = pd.read_csv('data/per_hour_df.csv')
 branch_list_df = pd.read_csv('data/branch_list_df.csv')
 
 
@@ -101,13 +103,13 @@ app.layout=html.Div([
         html.Br(),
         html.Br(),
 
-    # Product & Product Categories graph
+    # Performance graph
         dbc.Row(dbc.Col(
                 html.H5("Branch Performance"), className='graph_header'
         )),
         dbc.Row(dbc.Col(
                 html.Div([ 
-          dbc.Row(dbc.Col(
+        dbc.Row(dbc.Col(
                 html.Div([
                 dcc.Dropdown(options=[
                        {'label': x, 'value': x}
@@ -136,7 +138,7 @@ app.layout=html.Div([
                     dcc.Graph(id='top_performance_graph'),
                     dcc.Slider(
                         min=1,
-                        max=5,
+                        max=10,
                         step=1,
                         marks={
                             1: '1',
@@ -154,10 +156,10 @@ app.layout=html.Div([
                     )                
                     ])),
                 dbc.Col(html.Div([
-                    dcc.Graph(id='worst_performance_graph'),      
+                    dcc.Graph(id='lowest_performance_graph'),      
                     dcc.Slider(
                         min=1,
-                        max=5,
+                        max=10,
                         step=1,
                         marks={
                             1: '1',
@@ -171,18 +173,194 @@ app.layout=html.Div([
                             9: '9',
                             10:'10'
                         },
-                        value=5, id='bottom_performance_slider'
+                        value=5, id='lowest_performance_slider'
                     )              
                     ])),
             ], className='graph-container'
         ),
         html.Br(),
         html.Br(),
+
+    # Per Hour Sales for top 10 branches per year
+        dbc.Row(dbc.Col(
+                html.H5("Per Hour Sales"), className='graph_header'
+        )),
+        dbc.Row(dbc.Col(
+                html.Div([ 
+                dbc.Row(
+                        [  
+                        dbc.Col(html.Div([
+                            html.H6('Choose a year to load graph'),
+                            dcc.Graph(id='top_per_hour_graph', className='line-graph'),
+                            dcc.Slider(
+                                min=24,
+                                max=240,
+                                step=12,
+                                marks={
+                                    24: '1',
+                                    48: '2',
+                                    72: '3',
+                                    96: '4',
+                                    120: '5',
+                                    144: '6',
+                                    168: '7',
+                                    192: '8',
+                                    216: '9',
+                                    240: '10',
+                                
+                                },
+                                value=120, id='top_per_hour_slider', className='per-hour-slider'
+                            )                     
+                            ])),
+                    ], className='graph-container'
+                )]))),
+        dbc.Row(dbc.Col(
+                html.Div([
+                    html.H6('Year Selector', className="year_selector_h6"),
+                    dcc.Slider(
+                                min=2010,
+                                max=2020,
+                                step=1,
+                                marks={
+                                    2010: '2010',
+                                    2011: '2011',
+                                    2012: '2012',
+                                    2013: '2013',
+                                    2014: '2014',
+                                    2015: '2015',
+                                    2016: '2016',
+                                    2017: '2017',
+                                    2018: '2018',
+                                    2019: '2019',
+                                    2020: '2020',                         
+                                },
+                                value=0, id='per_hour_year_slider', className='per-hour-slider'),
+                ])
+        )),
+        dbc.Row(dbc.Col(
+                html.Div([ 
+                dbc.Row(
+                        [  
+                        dbc.Col(html.Div([
+                            dcc.Graph(id='lowest_per_hour_graph', className='line-graph'),      
+                            dcc.Slider(
+                                min=24,
+                                max=240,
+                                step=1,
+                                marks={
+                                    24: '1',
+                                    48: '2',
+                                    72: '3',
+                                    96: '4',
+                                    120: '5',
+                                    144: '6',
+                                    168: '7',
+                                    192: '8',
+                                    216: '9',
+                                    240: '10',
+                                
+                                },
+                                value=120, id='lowest_per_hour_slider', className='per-hour-slider'
+                            )                   
+                            ])),
+                    ], className='graph-container'
+                )]))),
+                html.Br(),
+                html.Br(),
+   
+    # Profitability by Branch
+        dbc.Row(dbc.Col(
+                html.H5("Branch Profitability"), className='graph_header'
+        )),
+        dbc.Row(dbc.Col(
+                html.Div([ 
+                dbc.Row(
+                        [  
+                        dbc.Col(html.Div([
+                            html.H6('Choose a year to load graph', ),
+                            dcc.Graph(id='top_profit_graph', className='line-graph'),
+                            dcc.Slider(
+                                min=24,
+                                max=240,
+                                step=12,
+                                marks={
+                                    24: '1',
+                                    48: '2',
+                                    72: '3',
+                                    96: '4',
+                                    120: '5',
+                                    144: '6',
+                                    168: '7',
+                                    192: '8',
+                                    216: '9',
+                                    240: '10',
+                                
+                                },
+                                value=120, id='top_profit_slider', className='profit-slider'
+                            )                     
+                            ])),
+                    ], className='graph-container'
+                )]))),
+        dbc.Row(dbc.Col(
+                html.Div([
+                    html.H6('Year Selector', className="year_selector_h6"),
+                    dcc.Slider(
+                                min=2010,
+                                max=2020,
+                                step=1,
+                                marks={
+                                    2010: '2010',
+                                    2011: '2011',
+                                    2012: '2012',
+                                    2013: '2013',
+                                    2014: '2014',
+                                    2015: '2015',
+                                    2016: '2016',
+                                    2017: '2017',
+                                    2018: '2018',
+                                    2019: '2019',
+                                    2020: '2020',                         
+                                },
+                                value=0, id='profit_year_slider', className='profit-slider'),
+                ])
+        )),
+        dbc.Row(dbc.Col(
+                html.Div([ 
+                dbc.Row(
+                        [  
+                        dbc.Col(html.Div([
+                            dcc.Graph(id='lowest_profit_graph', className='line-graph'),      
+                            dcc.Slider(
+                                min=24,
+                                max=240,
+                                step=1,
+                                marks={
+                                    24: '1',
+                                    48: '2',
+                                    72: '3',
+                                    96: '4',
+                                    120: '5',
+                                    144: '6',
+                                    168: '7',
+                                    192: '8',
+                                    216: '9',
+                                    240: '10',
+                                
+                                },
+                                value=120, id='lowest_profit_slider', className='profit-slider'
+                            )                   
+                            ])),
+                    ], className='graph-container'
+                )]))),
+        
+                html.Br(),
+                html.Br(),
+
 ])
 
 # Callbacks
 
-    # Products Callbacks
+# Products Callbacks
 
 @app.callback(
     Output(component_id='top_product_and_cat_graph', component_property='figure'),
@@ -218,18 +396,126 @@ def least_product_graph(data_select, region_select, county_select, slider_select
         regional_product_search = product_df.loc[product_df['region'] == region_select]
         least_product = regional_product_search.groupby(data_select)['quantity'].max().reset_index()
         least_product = least_product.nsmallest(slider_select,'quantity')
-        figure = px.bar(least_product,x=data_select, y= 'quantity', title=f'{region_select} Least Purchased {data_select}')
+        figure = px.bar(least_product,x=data_select, y= 'quantity', title=f'{region_select} Least Purchased {data_select}',color_discrete_sequence=["green"])
         return figure
     elif (data_select and county_select) is not None:
         regional_product_search = product_df.loc[product_df['county'] == county_select]
         least_product = regional_product_search.groupby(data_select)['quantity'].max().reset_index()
         least_product = least_product.nsmallest(slider_select,'quantity')
-        figure = px.bar(least_product,x=data_select, y= 'quantity', title=f'{county_select} Least Purchased {data_select}')
+        figure = px.bar(least_product,x=data_select, y= 'quantity', title=f'{county_select} Least Purchased {data_select}',color_discrete_sequence=["green"])
         return figure
     return {}
 
 # Performance Callbacks
 
+@app.callback(
+    Output(component_id='top_performance_graph', component_property='figure'),
+    Input(component_id='performance-region-selector', component_property='value'),
+    Input(component_id='performance-county-selector', component_property='value'),
+    Input(component_id='top_performance_slider', component_property='value') 
+)
+def top_performance_graph(region_select, county_select, slider_select):
+    if region_select is not None:
+        performance_df['best_performing'] = performance_df.quantity + performance_df.amount_in_gbp
+        performance_df.sort_values(by='best_performing', ascending=False) 
+        top_regional_performance = performance_df.loc[performance_df['region'] == region_select].nlargest(slider_select,'best_performing')
+        figure = px.bar(top_regional_performance, x='branch_name', y='best_performing', title='Top Regional Branch Performance')
+        return figure
+    elif county_select is not None:
+        performance_df['best_performing'] = performance_df.quantity + performance_df.amount_in_gbp
+        performance_df.sort_values(by='best_performing', ascending=False) 
+        top_county_performance = performance_df.loc[performance_df['county'] == county_select].nsmallest(slider_select,'best_performing')
+        figure = px.bar(top_county_performance, x='branch_name', y='best_performing', title='Top County Branch Performance')
+        return figure
+    return {}
+
+@app.callback(
+    Output(component_id='lowest_performance_graph', component_property='figure'),
+    Input(component_id='performance-region-selector', component_property='value'),
+    Input(component_id='performance-county-selector', component_property='value'),
+    Input(component_id='lowest_performance_slider', component_property='value') 
+)
+def worst_performance_graph(region_select, county_select, slider_select):
+    if region_select is not None:
+        performance_df['best_performing'] = performance_df.quantity + performance_df.amount_in_gbp
+        performance_df.sort_values(by='best_performing', ascending=False) 
+        lowest_regional_performance = performance_df.loc[performance_df['region'] == region_select].nsmallest(slider_select,'best_performing')
+        figure = px.bar(lowest_regional_performance, x='branch_name', y='best_performing', title='Lowest Regional Branch Performance',color_discrete_sequence=["green"])
+        return figure
+    elif county_select is not None:
+        performance_df['best_performing'] = performance_df.quantity + performance_df.amount_in_gbp
+        performance_df.sort_values(by='best_performing', ascending=False) 
+        lowest_county_performance = performance_df.loc[performance_df['county'] == county_select].nsmallest(slider_select,'best_performing')
+        figure = px.bar(lowest_county_performance, x='branch_name', y='best_performing', title='Lowest County Branch Performance',color_discrete_sequence=["green"])
+        return figure
+    return {}
+
+# Per Hour Callbacks
+
+@app.callback(
+    Output(component_id='top_per_hour_graph', component_property='figure'),
+    Input(component_id='per_hour_year_slider', component_property='value'),
+    Input(component_id='top_per_hour_slider', component_property='value') 
+)
+def top_performance_graph(year_select, branch_select):
+    if (year_select >= 2010):
+        year_filtered_df = per_hour_df.loc[per_hour_df['year']== year_select]
+        year_filtered_df.sort_values(by=['branch_name', 'hour'])
+
+        branch_hour_grouped_df = year_filtered_df.groupby(['branch_name', 'hour'])['amount_in_gbp'].sum().reset_index()
+
+        top_branches = branch_hour_grouped_df.groupby('branch_name')['amount_in_gbp'].sum().reset_index()
+        top_branches = top_branches.rename(columns={"amount_in_gbp":"total_gbp"})
+
+        merged_per_hour = branch_hour_grouped_df.merge(top_branches.set_index('branch_name'), on='branch_name').reset_index()
+        
+        top_merged_per_hour = merged_per_hour.sort_values(['total_gbp', 'hour'], ascending=True)
+        top_merged_per_hour = top_merged_per_hour.nlargest(branch_select, 'total_gbp')
+        figure = px.line(top_merged_per_hour, 
+        x='hour', 
+        y='amount_in_gbp', 
+        title=f'Top Branch Per Hour Sales For {year_select} ' ,
+        line_group='branch_name',
+        hover_name="branch_name",
+        orientation="h",
+        markers=True)
+        return figure
+    return {}
+
+@app.callback(
+    Output(component_id='lowest_per_hour_graph', component_property='figure'),
+    Input(component_id='per_hour_year_slider', component_property='value'),
+    Input(component_id='lowest_per_hour_slider', component_property='value') 
+)
+def top_performance_graph(year_select, branch_select):
+    if (year_select >= 2010):
+        year_filtered_df = per_hour_df.loc[per_hour_df['year']== year_select]
+        year_filtered_df.sort_values(by=['branch_name', 'hour'])
+
+        branch_hour_grouped_df = year_filtered_df.groupby(['branch_name', 'hour'])['amount_in_gbp'].sum().reset_index()
+
+        top_branches = branch_hour_grouped_df.groupby('branch_name')['amount_in_gbp'].sum().reset_index()
+        top_branches = top_branches.rename(columns={"amount_in_gbp":"total_gbp"})
+
+        merged_per_hour = branch_hour_grouped_df.merge(top_branches.set_index('branch_name'), on='branch_name').reset_index()
+        
+        lowest_merged_per_hour = merged_per_hour.sort_values(['total_gbp', 'hour'], ascending=True)
+        lowest_merged_per_hour = lowest_merged_per_hour.nsmallest(branch_select, 'total_gbp')
+        figure = px.line(lowest_merged_per_hour, 
+        x='hour', 
+        y='amount_in_gbp', 
+        title=f'Lowest Branch Per Hour Sales For {year_select} ',
+        line_group='branch_name',
+        hover_name="branch_name",
+        orientation="h",
+        markers=True,
+        color_discrete_sequence=["green"])
+        return figure
+    return {}
+
+    # 
+ 
+#
 
 # Run
 

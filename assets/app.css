@@ -33,3 +33,19 @@ body {
 .dropdown-header{
     text-align: center;
 }
+
+.disable{
+    text-align: center;
+}
+
+.year_selector_h6{
+    text-align: center;
+}
+.line-graph{
+    width: 110em;
+    margin: auto;
+}
+.per-hour-slider{
+    width: 90em;
+    margin: auto;
+}
