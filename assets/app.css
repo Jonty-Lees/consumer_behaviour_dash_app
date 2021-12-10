@@ -1,11 +1,13 @@
 body {
     margin: 20px 10px 20px 10px;
-    background: linear-gradient(rgba(255,255,255,1) 35%, rgb(7, 191, 163) 100%);
+    background: linear-gradient(rgba(255,255,255,1) 35%, rgb(189, 223, 218) 100%);
     ;
 }
 
 .header {
     text-align: center;
+    margin-bottom: 80px;
+    margin-top: 20px;
     
 }
 
@@ -46,6 +48,10 @@ body {
     margin: auto;
 }
 .per-hour-slider{
+    width: 90em;
+    margin: auto;
+}
+.profit-slider{
     width: 90em;
     margin: auto;
 }

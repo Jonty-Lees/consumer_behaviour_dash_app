@@ -15,6 +15,8 @@ app = dash.Dash('', external_stylesheets=[dbc.themes.BOOTSTRAP])
 product_df = pd.read_csv('data/product_df.csv')
 performance_df = pd.read_csv('data/performance_df.csv')
 per_hour_df = pd.read_csv('data/per_hour_df.csv')
+profit_df = pd.read_csv('data/profitable_branches_df.csv')
+branch_expenses_df = pd.read_csv('data/branch_expenses.csv')
 branch_list_df = pd.read_csv('data/branch_list_df.csv')
 
 
@@ -22,13 +24,15 @@ branch_list_df = pd.read_csv('data/branch_list_df.csv')
 # Setting Up Layout
 
 app.layout=html.Div([
+    #Title
+        dbc.Row(dbc.Col(
+                html.H1("Consumer Behaviour App"), className='header'
 
     # Product & Product Categories graph
-        dbc.Row(dbc.Col(
-                html.H2("Consumer Behaviour App"), className='header'
+
         )),
            dbc.Row(dbc.Col(
-                html.H5("Products and Product Categories Sales"), className='graph_header'
+                html.H4("Products and Product Categories Sales"), className='graph_header'
         )),
           dbc.Row(dbc.Col(
                 html.Div([ 
@@ -105,7 +109,7 @@ app.layout=html.Div([
 
     # Performance graph
         dbc.Row(dbc.Col(
-                html.H5("Branch Performance"), className='graph_header'
+                html.H4("Branch Performance"), className='graph_header'
         )),
         dbc.Row(dbc.Col(
                 html.Div([ 
@@ -183,7 +187,7 @@ app.layout=html.Div([
 
     # Per Hour Sales for top 10 branches per year
         dbc.Row(dbc.Col(
-                html.H5("Per Hour Sales"), className='graph_header'
+                html.H4("Per Hour Sales"), className='graph_header'
         )),
         dbc.Row(dbc.Col(
                 html.Div([ 
@@ -270,33 +274,33 @@ app.layout=html.Div([
    
     # Profitability by Branch
         dbc.Row(dbc.Col(
-                html.H5("Branch Profitability"), className='graph_header'
+                html.H4("Branch Profitability"), className='graph_header'
         )),
         dbc.Row(dbc.Col(
                 html.Div([ 
                 dbc.Row(
                         [  
                         dbc.Col(html.Div([
-                            html.H6('Choose a year to load graph', ),
+                            html.H6('Choose a year to load graph', className='year_selector_h6' ),
                             dcc.Graph(id='top_profit_graph', className='line-graph'),
                             dcc.Slider(
-                                min=24,
-                                max=240,
-                                step=12,
+                                min=1,
+                                max=10,
+                                step=1,
                                 marks={
-                                    24: '1',
-                                    48: '2',
-                                    72: '3',
-                                    96: '4',
-                                    120: '5',
-                                    144: '6',
-                                    168: '7',
-                                    192: '8',
-                                    216: '9',
-                                    240: '10',
+                                    1: '1',
+                                    2: '2',
+                                    3: '3',
+                                    4: '4',
+                                    5: '5',
+                                    6: '6',
+                                    7: '7',
+                                    8: '8',
+                                    9: '9',
+                                    10: '10',
                                 
                                 },
-                                value=120, id='top_profit_slider', className='profit-slider'
+                                value=10, id='top_profit_slider', className='profit-slider'
                             )                     
                             ])),
                     ], className='graph-container'
@@ -331,23 +335,23 @@ app.layout=html.Div([
                         dbc.Col(html.Div([
                             dcc.Graph(id='lowest_profit_graph', className='line-graph'),      
                             dcc.Slider(
-                                min=24,
-                                max=240,
+                                min=1,
+                                max=10,
                                 step=1,
                                 marks={
-                                    24: '1',
-                                    48: '2',
-                                    72: '3',
-                                    96: '4',
-                                    120: '5',
-                                    144: '6',
-                                    168: '7',
-                                    192: '8',
-                                    216: '9',
-                                    240: '10',
+                                    1: '1',
+                                    2: '2',
+                                    3: '3',
+                                    4: '4',
+                                    5: '5',
+                                    6: '6',
+                                    7: '7',
+                                    8: '8',
+                                    9: '9',
+                                    10: '10',
                                 
                                 },
-                                value=120, id='lowest_profit_slider', className='profit-slider'
+                                value=10, id='lowest_profit_slider', className='profit-slider'
                             )                   
                             ])),
                     ], className='graph-container'
@@ -380,7 +384,7 @@ def top_product_graph(data_select, region_select, county_select, slider_select):
         regional_product_search = product_df.loc[product_df['county'] == county_select]
         top_product = regional_product_search.groupby(data_select)['quantity'].max().reset_index()
         top_product = top_product.nlargest(slider_select,'quantity')
-        figure = px.bar(top_product,x=data_select, y= 'quantity', title=f'{county_select} Most Purchased {data_select}')
+        figure = px.bar(top_product,x=data_select, y= 'quantity', title=f'Most Purchased {data_select} In {county_select}')
         return figure
     return {}
 
@@ -402,7 +406,7 @@ def least_product_graph(data_select, region_select, county_select, slider_select
         regional_product_search = product_df.loc[product_df['county'] == county_select]
         least_product = regional_product_search.groupby(data_select)['quantity'].max().reset_index()
         least_product = least_product.nsmallest(slider_select,'quantity')
-        figure = px.bar(least_product,x=data_select, y= 'quantity', title=f'{county_select} Least Purchased {data_select}',color_discrete_sequence=["green"])
+        figure = px.bar(least_product,x=data_select, y= 'quantity', title=f'Least Purchased {data_select} In {county_select}',color_discrete_sequence=["green"])
         return figure
     return {}
 
@@ -515,7 +519,58 @@ def top_performance_graph(year_select, branch_select):
 
     # 
  
-#
+#Profitability
+
+@app.callback(
+    Output(component_id='top_profit_graph', component_property='figure'),
+    Input(component_id='profit_year_slider', component_property='value'),
+    Input(component_id='top_profit_slider', component_property='value') 
+)
+def top_performance_graph(year_select, branch_select):
+    if (year_select >= 2010):
+        year_filtered_df = profit_df.loc[profit_df['year']== year_select]
+        year_filtered_df.sort_values(by=['year','amount_in_gbp'],ascending=False)
+        top_year_filtered_df = year_filtered_df.nlargest(10, 'amount_in_gbp')
+        branch_expenses_df['total_expenses'] = branch_expenses_df.apply(lambda row: row.operational_cost + row.staff_bonuses + row.misc_expenses + row.waste_cost, axis=1)
+        total_branch_expenses =branch_expenses_df.groupby('branch_name')['total_expenses'].sum().reset_index()
+        branch_total_df = top_year_filtered_df.merge(total_branch_expenses.set_index('branch_name'), on='branch_name') 
+        branch_total_df['profitability'] = branch_total_df.apply(lambda row: row.amount_in_gbp - row.total_expenses, axis=1)
+        branch_total_df['profitability'] = branch_total_df.amount_in_gbp - branch_total_df.total_expenses
+        branch_total_df.sort_values(by='profitability', ascending=False)
+        branch_total_df.sort_values(by='profitability', ascending=False)
+        top_profitability_stores = branch_total_df.nlargest(branch_select, 'profitability')
+        figure = px.bar(top_profitability_stores, x='branch_name', y='profitability', title=f'Top Branch Profits in {year_select}' )
+
+
+        return figure
+    return {}
+
+@app.callback(
+    Output(component_id='lowest_profit_graph', component_property='figure'),
+    Input(component_id='profit_year_slider', component_property='value'),
+    Input(component_id='lowest_profit_slider', component_property='value') 
+)
+def top_performance_graph(year_select, branch_select):
+    if (year_select >= 2010):
+        year_filtered_df = profit_df.loc[profit_df['year']== year_select]
+        year_filtered_df.sort_values(by=['year','amount_in_gbp'],ascending=False)
+        top_year_filtered_df = year_filtered_df.nlargest(10, 'amount_in_gbp')
+        branch_expenses_df['total_expenses'] = branch_expenses_df.apply(lambda row: row.operational_cost + row.staff_bonuses + row.misc_expenses + row.waste_cost, axis=1)
+        total_branch_expenses =branch_expenses_df.groupby('branch_name')['total_expenses'].sum().reset_index()
+        branch_total_df = top_year_filtered_df.merge(total_branch_expenses.set_index('branch_name'), on='branch_name') 
+        branch_total_df['profitability'] = branch_total_df.apply(lambda row: row.amount_in_gbp - row.total_expenses, axis=1)
+        branch_total_df['profitability'] = branch_total_df.amount_in_gbp - branch_total_df.total_expenses
+        branch_total_df.sort_values(by='profitability', ascending=False)
+        branch_total_df.sort_values(by='profitability', ascending=False)
+        lowest_profitability_stores = branch_total_df.nsmallest(branch_select, 'profitability')
+        # figure = px.bar(least_product,x=data_select, y= 'quantity', title=f'{county_select} Least Purchased {data_select}',color_discrete_sequence=["green"])
+
+        figure = px.bar(lowest_profitability_stores, x='branch_name', y='profitability', title=f'Lowest Branch Profits in {year_select}' ,color_discrete_sequence=["green"])
+
+
+        return figure
+    return {}
+
 
 # Run
 
