@@ -46,6 +46,7 @@ body {
 .line-graph{
     width: 110em;
     margin: auto;
+    height: 25em;
 }
 .per-hour-slider{
     width: 90em;

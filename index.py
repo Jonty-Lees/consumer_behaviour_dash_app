@@ -194,7 +194,7 @@ app.layout=html.Div([
                 dbc.Row(
                         [  
                         dbc.Col(html.Div([
-                            html.H6('Choose a year to load graph'),
+                            html.H6('Choose a year to load graph', className="year_selector_h6"),
                             dcc.Graph(id='top_per_hour_graph', className='line-graph'),
                             dcc.Slider(
                                 min=24,
