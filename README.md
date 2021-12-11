@@ -51,6 +51,8 @@ I wanted to create an interface that was very simplistic and easy.
 
 You can view the page here: [Miro](https://miro.com/app/board/uXjVOdLqfzg=/?invite_link_id=520433487136)
 
+![Dashboard WireFrame](https://user-images.githubusercontent.com/86611109/145681108-ffbaa307-566b-4416-b679-fcfabde2c61e.png)
+
 
 ---
 
