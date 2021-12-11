@@ -5,7 +5,6 @@ from dash.dependencies import Input, Output, State
 
 import pandas as pd
 import plotly.express as px
-import matplotlib.pyplot as plt
 import dash_bootstrap_components as dbc
 
 # Initialisation
@@ -18,8 +17,6 @@ per_hour_df = pd.read_csv('data/per_hour_df.csv')
 profit_df = pd.read_csv('data/profitable_branches_df.csv')
 branch_expenses_df = pd.read_csv('data/branch_expenses.csv')
 branch_list_df = pd.read_csv('data/branch_list_df.csv')
-
-colorscales = px.colors.named_colorscales()
 
 
 # Setting Up Layout
