@@ -142,3 +142,5 @@ Bottom colours:
 
 - I would like the sliders to be responsive to the graph shown, If time had permitted I would have used etl.limit to get the rows and equate it to the possible range. With more time, I would have done this.
 
+- a loading bar incase loading took longer than expected. The dataframe files were very small so loading was very quick but would be important for future iterations
+
