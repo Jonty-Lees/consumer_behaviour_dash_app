@@ -1,15 +1,15 @@
 # Consumer Behaviour Dash App
-<!-- 
+
 In this project for a well know retail store, the client wanted an interactive dashboard that took their raw data from branch and reginon managers and convert it into a 
 easily readable and pictoral format.
 I would achieve this by using a cleaning and transformational python project, importing the outcome and building a dashboard for the client to interact with. 
-creating something simple, easy to use and, whilst not the focus, easy on the eyes while using.
+My priorities were to create something that fulfilled all the client needs, work with out bugs and is simplistic yet eye catchy in design
 
 Key points they needed:
   - Ability to track the most purchased and least purchased products & product categories overall, per region and per city (limit to top 5 and least 5)
   - Ability to track the best performing branches overall per region and per city (performance is measured in both item quantity sold and monetary value of sales made, limit to best 10 and worst 10)
   - Ability to track per hour sales for the top 10 branches identified
-  - Ability to identify the top 10 and bottom 10 profitable branches and indicate how profitable they are.  -->
+  - Ability to identify the top 10 and bottom 10 profitable branches and indicate how profitable they are. 
 ---
 
 ## Technologies
