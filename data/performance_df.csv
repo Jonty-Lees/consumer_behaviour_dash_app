@@ -1,0 +1,70 @@
+,region,county,branch_name,quantity,amount_in_gbp
+0,Yorkshire and the Humber,York,York outlet,107310670.0,11510204053.472
+1,Yorkshire and the Humber,Selby,Selby branch,107504427.0,11529866337.4916
+2,Yorkshire and the Humber,Richmondshire,Richmondshire outlet,130845287.0,13806726770.460201
+3,Yorkshire and the Humber,North Yorkshire,North Yorkshire store,130874199.0,13843488765.533201
+4,Yorkshire and the Humber,North Yorkshire,North Yorkshire outlet,120392702.0,12844817054.7884
+5,West Midlands,Warwickshire,Warwickshire branch,262086398.0,27606947256.993202
+6,West Midlands,Stoke-on-Trent,Stoke-on-Trent store,130958633.0,13808009847.0338
+7,West Midlands,Staffordshire,Staffordshire store,130457045.0,13778199446.233
+8,West Midlands,Rugby,Rugby branch,105432450.0,11406901286.4698
+9,West Midlands,Lichfield,Lichfield outlet,128372360.0,13500077136.759
+10,Wales,Isle of Anglesey,Isle of Anglesey outlet,108464193.0,11631930083.7504
+11,Wales,Bargoed,Bargoed outlet,106212042.0,11488453160.198
+12,Wales,Bridgend,Bridgend outlet,119841171.0,12746160712.4764
+13,Wales,Ceredigion,Ceredigion store,128758178.0,13552092646.0928
+14,Wales,Barry,Barry outlet,118919062.0,12690322614.757
+15,Wales,Neath Port Talbot,Neath Port Talbot outlet,213558664.0,22988762268.7136
+16,Wales,Wrexham,Wrexham store,208957798.0,22410145049.299603
+17,Wales,Powys,Powys outlet,116608754.0,12387807247.9032
+18,South West England,West Somerset,West Somerset branch,233642606.0,25018764876.182
+19,South West England,Forest of Dean,Forest of Dean store,129892798.0,13673066262.582
+20,South West England,Dorset,Dorset outlet,129641054.0,13771720637.9698
+21,South East England,Kent,Kent branch,258686924.0,27270707909.684002
+22,South East England,East Sussex,East Sussex outlet,129858134.0,13666674086.1166
+23,South East England,Epsom and Ewell,Epsom and Ewell store,131062225.0,13855723686.9088
+24,South East England,Fareham,Fareham outlet,117533836.0,12551569141.5764
+25,South East England,Hampshire,Hampshire branch,119270238.0,12751109699.7794
+26,South East England,Isle of Wight,Isle of Wight store,117567707.0,12556439346.477201
+27,South East England,Reigate and Banstead,Reigate and Banstead branch,107189846.0,11562336985.8024
+28,South East England,Mole Valley,Mole Valley store,76966062.0,7704205621.2812
+29,South East England,Oxford,Oxford outlet,118100522.0,12540749418.4662
+30,South East England,Shepway,Shepway store,107549650.0,11688502206.203201
+31,South East England,West Oxfordshire,West Oxfordshire outlet,106350049.0,11493836312.8228
+32,South East England,Bracknell Forest,Bracknell Forest store,119976316.0,12754892706.232801
+33,South East England,Chiltern,Chiltern store,129348608.0,13657518039.582201
+34,Scotland,Peeblesshire,Peeblesshire outlet,128124175.0,13475295075.2626
+35,Scotland,North Ayrshire,North Ayrshire store,130867673.0,13841306247.2858
+36,Scotland,Glasgow City,Glasgow City outlet,106859872.0,11533912999.6326
+37,Scotland,Falkirk,Falkirk branch,353448399.0,37618273512.3936
+38,Scotland,Edinburgh City,Edinburgh City branch,211435214.0,22827892388.6408
+39,Scotland,East Dunbartonshire,East Dunbartonshire branch,106319275.0,11391357854.731
+40,Scotland,Dumfries and Galloway,Dumfries and Galloway branch,117806073.0,12509473807.5256
+41,Northern Ireland,Larne,Larne store,126544974.0,13393615337.7652
+42,Northern Ireland,Armagh,Armagh outlet,105239104.0,11352899748.7514
+43,North West England,Fylde,Fylde outlet,130388967.0,13752944213.975801
+44,North West England,Cheshire East,Cheshire East outlet,130905595.0,13800431391.565601
+45,North West England,Chorley,Chorley store,118826500.0,12622398712.538
+46,North West England,Sefton,Sefton outlet,130241322.0,13784575399.4906
+47,North West England,Lancashire,Lancashire store,107256377.0,11551138589.009
+48,North East England,Darlington,Darlington store,107426628.0,11610976195.8472
+49,North East England,Tyne and Wear,Tyne and Wear outlet,130871905.0,13744036739.0756
+50,London,Islington,Islington branch,234610612.0,24929744111.824
+51,London,Greater London,Greater London branch,261732992.0,27501434488.0208
+52,London,Haringey,Haringey store,129552223.0,13704143410.599401
+53,London,Lambeth,Lambeth store,130186640.0,13807838579.155
+54,London,Newham,Newham branch,130017221.0,13682595963.9858
+55,East of England,Uttlesford,Uttlesford branch,108176515.0,11612456058.0688
+56,East of England,East Hertfordshire,East Hertfordshire branch,104757852.0,11344618607.1618
+57,East of England,Colchester,Colchester outlet,106249294.0,11435456748.3466
+58,East of England,Castle Point,Castle Point outlet,130164584.0,13763035935.947401
+59,East of England,Bedfordshire,Bedfordshire store,105557414.0,11424474647.0216
+60,East of England,Bedford Borough,Bedford Borough branch,118264523.0,12632064984.530401
+61,East Midlands,Lincolnshire,Lincolnshire store,106384560.0,11448986776.7042
+62,East Midlands,Hinckley and Bosworth,Hinckley and Bosworth branch,116837147.0,12406852569.8344
+63,East Midlands,Lincoln,Lincoln branch,131900207.0,13839126767.7122
+64,East Midlands,East Lindsey,East Lindsey branch,360521916.0,38580133776.6612
+65,East Midlands,Newark and Sherwood,Newark and Sherwood store,108257431.0,11738446597.9622
+66,East Midlands,Rushcliffe,Rushcliffe branch,107749608.0,11557168296.5034
+67,East Midlands,South Northamptonshire,South Northamptonshire store,131621748.0,13824308732.836601
+68,East Midlands,Bassetlaw,Bassetlaw outlet,131010110.0,13838435781.5576
