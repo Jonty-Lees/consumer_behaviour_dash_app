@@ -19,33 +19,35 @@ Key points they needed:
 3. Pandas
 4. Plotly Express
 5. Dash Bootstrap
+6. Flask
+7. gunicorn
 8. Heroku
 9. GitHub
 10. Miro
 11. Jupyter Notebook
 12. Matplotlib.pyplot
+13. nbformatm
+
 
 ---
 
 ## Installation Instructions
 
-To use this data celaning and transforamtion notebook,
+To use this dashbord,
 - Git Clone this repository
 - CD into file
-- Download raw data zip and save under a file name 'data'
 - create a vitual enviroment 
-  - and install dash, pandas, plotly, matplotlibs, openpyxl and petl
-- run the data_cleaning.ipynb 
-  This may take a rather long time but will output the relevent files
-Then
--run data_transformation.ipynb
-  This will output your data in a readable way and plot graphs. It will also export smaller files that can be used in any capacity
+- Install dash, pandas, plotly, matplotlibs
+- run the dash app 
+
+
  
 ---
 
 ### Planning through Miro
 
-In order to keep track of progress and make sure I was on the right track, I used Miro to organise the project into bitsize pieces
+In order to keep track of progress and make sure I was on the right track, I used Miro to organise the project into bitsize pieces as well as create a wire frame. 
+I wanted to create an interface that was very simplistic and easy. 
 
 You can view the page here: [Miro](https://miro.com/app/board/uXjVOdLqfzg=/?invite_link_id=520433487136)
 
@@ -54,39 +56,37 @@ You can view the page here: [Miro](https://miro.com/app/board/uXjVOdLqfzg=/?invi
 
 ## Development process and problem-solving strategy
 
-In this project, I took the appraoch of being super organised and working to schedual, While I mostly did this, there were some unforseen challenges... of course there were!
+My approach to to this project was to use bootstrap to create the layout (as was under the impression that style was less important than data representation).
 
-My goal was to create a full Dataframe that contained all the relevent informatino and then use that in the dash app. 
-Knowing we had multiple file types, I wanted to convert all files per file type and the join/ concat the files together.
-I wanted to make sure that all df's had an easy way to join so decided to make sure the branch name matched in each.
-To do this with, i imported using glob, iterated through each file and importing, and adding the file name (without the file type) to a new column
-I later used etl to split and replace parts of the file name to create a column with a branch name that refelected other files.
+I wanted to give each graph multiple options so the user could interactivly change the graphs and where there were coloumn options, like region and county, I wanted the user to be able to see both, choose their column field which then would disable to possibility of selecting the other. I wanted to reduce any confusion by forcing the drop down menu to disable when the other is selected.
+
+I had trouble with that code, the issues that I had to work out was that, when the page loaded, the drop down menu was never empty, the value when loaded was "". I had to figure out this was the case and then use and if statment inside an if statement for the callback function.
 
 See below:
 
 ```
-csv_data_import = glob.glob('data/*.csv')
-csv_data = []
-for csv in csv_data_import:
-    frame = pd.read_csv(csv)
-    frame['store'] = os.path.basename(csv).split(".")[0]
-    csv_data.append(frame)
-
-csv_final = pd.concat(csv_data, ignore_index=True)
+@app.callback(
+    Output(component_id="performance-county-selector", component_property="disabled"),
+    Output(component_id="performance-region-selector", component_property="disabled"),
+    Input(component_id='performance-region-selector', component_property='value'),
+    Input(component_id='performance-county-selector', component_property='value'),
+)
+def performance_disable_change(region, county):
+    if region is not None:
+        if region == "":
+            return False, False
+        else:
+            return True, False
+    elif county is not None:
+        if county == "":
+            return False, False
+        else:
+            return False, True
+    return False, False
 
 ```
-The rest of the process was to use etl to cutout, split and join to create a large df with the information I needed and that had to be together in the df.
 
-The problem that I faced was that the file was 10.97GB, which i quickly realised that there was no real way of working with a file that size nor would dash work with it.
 
-I carryed on and made my data_transformation notebook. After spending countless hours writing simple code that took a long time to process and looking into ways to chunk the data. 
-I realised I could use just the revelent columns. whilst this helped, it only brought the file sizes to around 4GB. still to large. 
-After some more research, I started to really understand the power of the groupby function. How you can compeltly minimise the outcome, export it as a CSV
-and use that as my Dataframe
-
-This made a significant change to my file size.
-
-one of my files went from 10.9GB (full df) --> 3.5GB (columnized df) --> 5kb (groupby df)
 
 see below:
 
