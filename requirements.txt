@@ -70,4 +70,5 @@ traitlets==5.1.1
 typing-extensions==3.10.0.2
 wcwidth==0.2.5
 Werkzeug==2.0.2
+whitenoise==5.3.0
 yapf==0.31.0

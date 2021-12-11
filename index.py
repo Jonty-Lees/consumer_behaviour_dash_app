@@ -2,6 +2,7 @@
 import dash;
 from dash import dcc, html;
 from dash.dependencies import Input, Output, State
+from whitenoise import WhiteNoise
 
 import pandas as pd
 import plotly.express as px
@@ -11,6 +12,7 @@ import dash_bootstrap_components as dbc
 
 app = dash.Dash('', external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
+server.wsgi_app = WhiteNoise(server.wsgi_app, root='assets/')
 
 product_df = pd.read_csv('data/product_df.csv')
 performance_df = pd.read_csv('data/performance_df.csv')
