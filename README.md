@@ -1,5 +1,19 @@
 # Consumer Behaviour Dash App
 
+---
+
+## Deployment
+
+I deployed this app through Heroku with gunicorn and whitenoise, click below to view:
+
+[Consumer Behaviour App](https://consumer-behaviour-dash-lees.herokuapp.com/)
+
+
+
+---
+
+## Introduction
+
 In this project for a well know retail store, the client wanted an interactive dashboard that took their raw data from branch and reginon managers and convert it into a 
 easily readable and pictoral format.
 I would achieve this by using a cleaning and transformational python project, importing the outcome and building a dashboard for the client to interact with. 
