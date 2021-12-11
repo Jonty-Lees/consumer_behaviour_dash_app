@@ -86,20 +86,43 @@ def performance_disable_change(region, county):
 
 ```
 
+For the most part, I found the routing of the the layout to the callbacks fairly simple to navigate. Understanding how Input, Output and State works felt easier when the routes are direct. When I needed to use a for loop it took a bit more trail and error but was totally do-able!
 
+A good example was populating the dropdown menu with regions and counties without hardcoding. 
 
 see below:
 
 ```
-performance_df = branch_df[['region', 'county', 'branch_name', 'quantity','amount_in_gbp']]
-
-regional_performance = performance_df.groupby(['region', 'county', 'branch_name'])[['quantity', 'amount_in_gbp']].sum().sort_values(by='region', ascending=False).reset_index()
-
-regional_performance.to_csv('testing_output/performance_df.csv')
+ dcc.Dropdown(options=[
+                       {'label': y, 'value': y}
+                        for y in sorted(branch_list_df.county.unique())
+                    ], 
+                    id='product-county-selector',
+                    className= 'county-selector',
+                    value="",
+                    placeholder='Select County'
+                ),
 
 ```
 
-Once this became quicker and easier to work with, finding all the information needed to plot the graph became easier, then replicating the process meant in a much shorter time than before, i had grouped files that 
-were workable and easy to use in the dash app.
+I put most of my effort and attnetion into getting the first graphs and options correct, from that point on it was far more about replicating what I had done, while changing the ouput code to create the right graphs.
+I then was able to play around with the colouring the graphs. I did this right at the end so I could make sure the page flowed. i use the same colour shceme for all tops and bottoms and changed the line graph colour from a numerical value to the branch names so the client could track more easily. I reversed the colour directino with '_r' added to the end so hgihest numbers had a brighter colour
+Top colours:
+```
+            color='quantity',
+            color_continuous_scale=px.colors.sequential.Bluyl_r)
+```
+Bottom colours:
+```
+            color='quantity',
+            color_continuous_scale=px.colors.sequential.matter_r)
+```
 
+---
+
+## Future Iterations
+
+- I would like to expand the graphs, I dont believe having only two graphs showed all the data in the best light. Potnetially for the Per Hour graph and the Profitability graph I would have like to have been able to have 4 graphs that include stacked bar graphs, But time and necessity did not permit that.
+
+- I would like the sliders to be responsive to the graph shown, If time had permitted I would have used etl.limit to get the rows and equate it to the possible range. With more time, I would have done this.
 
