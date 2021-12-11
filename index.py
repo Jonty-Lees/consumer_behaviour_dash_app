@@ -10,6 +10,7 @@ import dash_bootstrap_components as dbc
 # Initialisation
 
 app = dash.Dash('', external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 
 product_df = pd.read_csv('data/product_df.csv')
 performance_df = pd.read_csv('data/performance_df.csv')
@@ -658,8 +659,8 @@ def lowest_profitability_graph(year_select, branch_select):
 
 
 # Run
-
-app.run_server(debug=True)
+if __name__ == '__main__':  
+    app.run_server(debug=True)
 
 
 
