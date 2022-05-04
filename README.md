@@ -14,16 +14,17 @@ I deployed this app through Heroku with gunicorn and whitenoise, click below to 
 
 ## Introduction
 
-In this project for a well know retail store, the client wanted an interactive dashboard that took their raw data from branch and reginon managers and convert it into a 
-easily readable and pictoral format.
-I would achieve this by using a cleaning and transformational python project, importing the outcome and building a dashboard for the client to interact with. 
-My priorities were to create something that fulfilled all the client needs, work with out bugs and is simplistic yet eye catchy in design
+This project is for a fictitious retail organization who wanted an interactive dashboard that took their raw data from branch and regional managers and converted it into an easily readable and visually attractive graphs. 
+I will achieve this by cleaning and transforming the raw data through Python and exporting it to a dashboard for the client to interact with.
+My priorities are to deliever a stable and bug-free dashboard that is visually up to the standard require. In order to not feature-creep, I will take a simplistic approach which will allow for additional features in later iterations.
 
-Key points they needed:
-  - Ability to track the most purchased and least purchased products & product categories overall, per region and per city (limit to top 5 and least 5)
-  - Ability to track the best performing branches overall per region and per city (performance is measured in both item quantity sold and monetary value of sales made, limit to best 10 and worst 10)
-  - Ability to track per hour sales for the top 10 branches identified
-  - Ability to identify the top 10 and bottom 10 profitable branches and indicate how profitable they are. 
+Key points they need:
+  - Ability to track the most purchased and least purchased products & product categories overall, per region and per city. Limited to top and bottom 5
+  - Ability to track the best performing branches overall per region and per city, limited to top and bottom 10. Performance will be measure in both item quaitity sold and monetary value of sales made.
+
+- Ability to track per hour sales for the top 10 branches identified
+
+- Ability to identify the highest and lowest
 ---
 
 ## Technologies
@@ -51,7 +52,7 @@ To use this dashbord,
 - Git Clone this repository
 - CD into file
 - create a vitual enviroment 
-- Install dash, pandas, plotly, matplotlibs
+- sync virtual enviroment
 - run the dash app 
 
 
@@ -60,7 +61,7 @@ To use this dashbord,
 
 ### Planning through Miro
 
-In order to keep track of progress and make sure I was on the right track, I used Miro to organise the project into bitsize pieces as well as create a wire frame. 
+In order to keep track of myy progress and make sure I was not feature creeping, I used Miro to organise the project into bitsize pieces as well as create a wire frame. 
 I wanted to create an interface that was very simplistic and easy. 
 
 You can view the page here: [Miro](https://miro.com/app/board/uXjVOdLqfzg=/?invite_link_id=520433487136)
@@ -72,7 +73,7 @@ You can view the page here: [Miro](https://miro.com/app/board/uXjVOdLqfzg=/?invi
 
 ## Development process and problem-solving strategy
 
-My approach to to this project was to use bootstrap to create the layout (as was under the impression that style was less important than data representation).
+My approach to to this project was to use bootstrap to create the layout.
 
 I wanted to give each graph multiple options so the user could interactivly change the graphs and where there were coloumn options, like region and county, I wanted the user to be able to see both, choose their column field which then would disable to possibility of selecting the other. I wanted to reduce any confusion by forcing the drop down menu to disable when the other is selected.
 
